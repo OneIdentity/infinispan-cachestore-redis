@@ -8,6 +8,7 @@ import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisSentinelPool;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -56,6 +57,9 @@ final public class RedisClusterConnectionPool implements RedisConnectionPool
     @Override
     public void shutdown()
     {
-        this.cluster.close();
+        try {
+            this.cluster.close();
+        } catch(IOException ex) {
+        }
     }
 }

@@ -135,7 +135,7 @@ final public class RedisStoreConfigurationBuilder
     {
         super.read(template);
         for (RedisServerConfiguration server : template.servers()) {
-            this.addServer().host(server.host()).port(server.port());
+            this.addServer().host(server.host()).port(server.port()).ssl(server.isSsl());
         }
 
         for (RedisServerConfiguration server : template.sentinels()) {
